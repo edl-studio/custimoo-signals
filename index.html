@@ -731,19 +731,19 @@ body::before {
   <div class="panel threats">
     <div class="panel-header">
       <div class="panel-label"><span class="icon">◆</span> Active Signals</div>
-      <div class="panel-count">3 active · 4 channels</div>
+      <div class="panel-count">3 active · 2 platforms</div>
     </div>
     <div class="threat-list">
 
       <div class="threat">
         <div class="threat-bar critical"></div>
         <div>
-          <div class="threat-title">UTM parameter mismatch across EMEA Paid Social campaigns</div>
-          <div class="threat-desc">42% of Meta and TikTok campaigns launched this week in EMEA contain non-compliant utm_campaign values. Naming convention drift detected: teams are using free-text instead of the approved taxonomy. This is causing unattributed traffic in GA4 — estimated 18k sessions/day landing in (other). Finance flagged a €340k discrepancy between ad platform spend and attributed revenue.</div>
+          <div class="threat-title">Browser extension taxonomy dropdown failing on Meta Business Manager</div>
+          <div class="threat-desc">The extension's taxonomy picker is not rendering inside Meta Business Manager following their Feb 28 DOM update. Users are falling back to manual free-text entry — bypassing validation entirely. Sentry shows 2,400+ errors/day from the content-script injection. Correlates with interview P06's feedback: "I just type it myself now because the dropdown never loads." Extension crash rate on Meta is 34% vs. 2% on other platforms.</div>
           <div class="threat-sources">
-            <span class="threat-source">accutics · validation-engine</span>
-            <span class="threat-source">ga4 · attribution-gap</span>
-            <span class="threat-source">meta ads · 23 campaigns</span>
+            <span class="threat-source">sentry · browser-ext</span>
+            <span class="threat-source">dovetail · P06, P12</span>
+            <span class="threat-source">zendesk · 19 tickets</span>
           </div>
         </div>
         <div class="threat-meta">
@@ -755,12 +755,12 @@ body::before {
       <div class="threat">
         <div class="threat-bar warning"></div>
         <div>
-          <div class="threat-title">Google Ads auto-tagging conflict with manual UTMs in APAC</div>
-          <div class="threat-desc">Auto-tagging in the APAC Google Ads account is overwriting manually set UTM parameters on 67 active campaigns. Click-to-session matching dropped to 54% this week (vs. 91% baseline). The APAC team enabled auto-tagging without updating the Accutics validation rules, causing duplicate tracking IDs. Snowflake pipeline shows 12% of conversion events now have null campaign attribution.</div>
+          <div class="threat-title">Link Builder bulk import timing out on files above 500 rows</div>
+          <div class="threat-desc">CSV imports with more than 500 rows are hitting the 30s gateway timeout — forcing users to split files manually. 23% of enterprise accounts regularly import 1k+ rows. Datadog traces show the validation-per-row loop scales O(n²) due to duplicate-check logic. Users are requesting a progress bar: "It just spins and I don't know if it's working or frozen."</div>
           <div class="threat-sources">
-            <span class="threat-source">accutics · rule-conflict</span>
-            <span class="threat-source">google ads · APAC account</span>
-            <span class="threat-source">snowflake · attribution-null</span>
+            <span class="threat-source">datadog · link-builder</span>
+            <span class="threat-source">jira · ACC-2847</span>
+            <span class="threat-source">dovetail · enterprise-feedback</span>
           </div>
         </div>
         <div class="threat-meta">
@@ -772,11 +772,11 @@ body::before {
       <div class="threat">
         <div class="threat-bar info"></div>
         <div>
-          <div class="threat-title">New agency partner launching campaigns without taxonomy validation</div>
-          <div class="threat-desc">The recently onboarded agency (Wavemaker) has bypassed Accutics browser extension for 3 consecutive weeks. 89 campaigns launched with free-form naming — none matching the global taxonomy. LinkedIn and DV360 campaigns are most affected. Tracked traffic ratio for agency-managed campaigns is at 31% vs. 94% for internal teams. Risk of Q1 reporting gaps if not resolved before month-end close.</div>
+          <div class="threat-title">Data Connect onboarding completion rate declining for new accounts</div>
+          <div class="threat-desc">Only 38% of new accounts complete the Data Connect setup within their first 14 days — down from 61% in January. Drop-off clusters at the warehouse credential step. Users with Snowflake complete at 52%, BigQuery at 29%. Interviews with P03 and P08 confirm: "I needed my IT team to give me credentials and by then I'd moved on." Activation emails have a 12% open rate after day 3.</div>
           <div class="threat-sources">
-            <span class="threat-source">accutics · onboarding-gap</span>
-            <span class="threat-source">linkedin ads · 34 campaigns</span>
+            <span class="threat-source">amplitude · onboarding-funnel</span>
+            <span class="threat-source">dovetail · P03, P08</span>
           </div>
         </div>
         <div class="threat-meta">
@@ -791,48 +791,48 @@ body::before {
   <!-- ── EXPERIENCE SCORECARD ── -->
   <div class="panel scorecard">
     <div class="panel-header">
-      <div class="panel-label"><span class="icon">◈</span> Data Quality Scorecard</div>
+      <div class="panel-label"><span class="icon">◈</span> Experience Scorecard</div>
       <div class="panel-count">Mar 2026 · vs. baseline Jan 2026</div>
     </div>
     <div class="kpi-grid">
       <div class="kpi">
-        <div class="kpi-header"><span class="kpi-dot home"></span><span class="kpi-label">Campaign taxonomy compliance</span></div>
-        <div class="kpi-value green">87%</div>
+        <div class="kpi-header"><span class="kpi-dot home"></span><span class="kpi-label">Link Builder task completion</span></div>
+        <div class="kpi-value amber">64%</div>
         <div class="kpi-footer">
-          <span class="kpi-trend up">↑ 12% from baseline</span>
-          <span class="kpi-target">Target: 95%</span>
+          <span class="kpi-trend down">↓ 7% from baseline</span>
+          <span class="kpi-target">Target: 80%</span>
         </div>
       </div>
       <div class="kpi">
-        <div class="kpi-header"><span class="kpi-dot home"></span><span class="kpi-label">Click-to-visit completeness</span></div>
-        <div class="kpi-value green">94%</div>
+        <div class="kpi-header"><span class="kpi-dot home"></span><span class="kpi-label">G2 rating</span></div>
+        <div class="kpi-value green">4.5</div>
         <div class="kpi-footer">
-          <span class="kpi-trend up">↑ 7% from baseline</span>
-          <span class="kpi-target">Target: 97%</span>
+          <span class="kpi-trend up">↑ 0.2 from baseline</span>
+          <span class="kpi-target">Target: 4.7</span>
         </div>
       </div>
       <div class="kpi">
-        <div class="kpi-header"><span class="kpi-dot home"></span><span class="kpi-label">Unattributed traffic (other)</span></div>
-        <div class="kpi-value red">14%</div>
+        <div class="kpi-header"><span class="kpi-dot home"></span><span class="kpi-label">Support tickets / 1k accounts</span></div>
+        <div class="kpi-value red">32</div>
         <div class="kpi-footer">
-          <span class="kpi-trend down">↑ 6% vs. last month</span>
-          <span class="kpi-target">Target: &lt;5%</span>
+          <span class="kpi-trend down">↑ 14 vs. last month</span>
+          <span class="kpi-target">Target: &lt;12/mo</span>
         </div>
       </div>
       <div class="kpi">
-        <div class="kpi-header"><span class="kpi-dot operator"></span><span class="kpi-label">Tracked traffic ratio</span></div>
-        <div class="kpi-value amber">78%</div>
+        <div class="kpi-header"><span class="kpi-dot operator"></span><span class="kpi-label">Data Connect setup time</span></div>
+        <div class="kpi-value green">6m 40s</div>
         <div class="kpi-footer">
-          <span class="kpi-trend down">↓ 8% from baseline</span>
-          <span class="kpi-target">Target: 90%</span>
+          <span class="kpi-trend up">↓ 3m 20s from baseline</span>
+          <span class="kpi-target">Target: &lt;8m</span>
         </div>
       </div>
       <div class="kpi">
-        <div class="kpi-header"><span class="kpi-dot operator"></span><span class="kpi-label">Avg. campaign setup time</span></div>
-        <div class="kpi-value green">2m 15s</div>
+        <div class="kpi-header"><span class="kpi-dot operator"></span><span class="kpi-label">Extension · avg. time saved per session</span></div>
+        <div class="kpi-value green">4m</div>
         <div class="kpi-footer">
-          <span class="kpi-trend up">↓ 4m 30s from baseline</span>
-          <span class="kpi-target">Target: &lt;3m</span>
+          <span class="kpi-trend up">↑ 1m 30s from baseline</span>
+          <span class="kpi-target">Target: 5m</span>
         </div>
       </div>
     </div>
@@ -842,57 +842,57 @@ body::before {
   <!-- ── COMPONENT ADOPTION ── -->
   <div class="panel adoption">
     <div class="panel-header">
-      <div class="panel-label"><span class="icon">◉</span> Channel Coverage</div>
+      <div class="panel-label"><span class="icon">◉</span> Component Adoption</div>
       <div class="panel-count">Synced 1h ago</div>
     </div>
     <div class="adoption-hero">
-      <div class="adoption-pct">82%</div>
-      <div class="adoption-label-sub">Taxonomy enforced<br>across all channels</div>
+      <div class="adoption-pct">76%</div>
+      <div class="adoption-label-sub">Accutics platform adoption<br>across all teams</div>
     </div>
     <div class="bar-chart">
       <div class="bar-row">
-        <div class="bar-label">Google Ads</div>
-        <div class="bar-track"><div class="bar-fill green" style="width:96%"></div></div>
-        <div class="bar-value">96%</div>
+        <div class="bar-label">Link Builder</div>
+        <div class="bar-track"><div class="bar-fill green" style="width:94%"></div></div>
+        <div class="bar-value">94%</div>
       </div>
       <div class="bar-row">
-        <div class="bar-label">Meta Ads</div>
-        <div class="bar-track"><div class="bar-fill green" style="width:91%"></div></div>
-        <div class="bar-value">91%</div>
+        <div class="bar-label">Taxonomy Manager</div>
+        <div class="bar-track"><div class="bar-fill green" style="width:88%"></div></div>
+        <div class="bar-value">88%</div>
       </div>
       <div class="bar-row">
-        <div class="bar-label">LinkedIn</div>
-        <div class="bar-track"><div class="bar-fill amber" style="width:74%"></div></div>
-        <div class="bar-value">74%</div>
+        <div class="bar-label">Browser Extension</div>
+        <div class="bar-track"><div class="bar-fill amber" style="width:67%"></div></div>
+        <div class="bar-value">67%</div>
       </div>
       <div class="bar-row">
-        <div class="bar-label">DV360</div>
-        <div class="bar-track"><div class="bar-fill amber" style="width:68%"></div></div>
-        <div class="bar-value">68%</div>
+        <div class="bar-label">Validation Engine</div>
+        <div class="bar-track"><div class="bar-fill amber" style="width:61%"></div></div>
+        <div class="bar-value">61%</div>
       </div>
       <div class="bar-row">
-        <div class="bar-label">TikTok</div>
-        <div class="bar-track"><div class="bar-fill red" style="width:43%"></div></div>
-        <div class="bar-value">43%</div>
+        <div class="bar-label">Data Connect</div>
+        <div class="bar-track"><div class="bar-fill red" style="width:42%"></div></div>
+        <div class="bar-value">42%</div>
       </div>
       <div class="bar-row">
-        <div class="bar-label">Microsoft Ads</div>
-        <div class="bar-track"><div class="bar-fill red" style="width:37%"></div></div>
-        <div class="bar-value">37%</div>
+        <div class="bar-label">Cost Importer</div>
+        <div class="bar-track"><div class="bar-fill red" style="width:29%"></div></div>
+        <div class="bar-value">29%</div>
       </div>
     </div>
     <div class="adoption-footer">
       <div class="adoption-stat">
-        <div class="adoption-stat-val" style="color:var(--green)">+156</div>
-        <div class="adoption-stat-label">Campaigns validated<br>this week</div>
+        <div class="adoption-stat-val" style="color:var(--green)">+34</div>
+        <div class="adoption-stat-label">New users onboarded<br>this month</div>
       </div>
       <div class="adoption-stat">
-        <div class="adoption-stat-val" style="color:var(--red)">89</div>
-        <div class="adoption-stat-label">Non-compliant<br>campaigns</div>
+        <div class="adoption-stat-val" style="color:var(--red)">12</div>
+        <div class="adoption-stat-label">Teams not yet<br>onboarded</div>
       </div>
       <div class="adoption-stat">
-        <div class="adoption-stat-val" style="color:var(--amber)">7</div>
-        <div class="adoption-stat-label">Regions below<br>threshold</div>
+        <div class="adoption-stat-val" style="color:var(--amber)">3</div>
+        <div class="adoption-stat-label">Integrations<br>pending setup</div>
       </div>
     </div>
   </div>
@@ -901,51 +901,51 @@ body::before {
   <!-- ── DESIGN HEALTH / A11Y ── -->
   <div class="panel design-health">
     <div class="panel-header">
-      <div class="panel-label"><span class="icon">◈</span> Governance &amp; Compliance</div>
+      <div class="panel-label"><span class="icon">◈</span> Accessibility &amp; Design Debt</div>
     </div>
 
     <div class="a11y-score">
       <div class="a11y-ring">
         <svg width="76" height="76" viewBox="0 0 76 76">
           <circle cx="38" cy="38" r="32" fill="none" stroke="var(--surface-2)" stroke-width="5"/>
-          <circle cx="38" cy="38" r="32" fill="none" stroke="var(--green)" stroke-width="5"
-            stroke-dasharray="163 38"
+          <circle cx="38" cy="38" r="32" fill="none" stroke="var(--amber)" stroke-width="5"
+            stroke-dasharray="147 54"
             stroke-linecap="round"/>
         </svg>
-        <div class="a11y-ring-value" style="color:var(--green)">81</div>
+        <div class="a11y-ring-value" style="color:var(--amber)">73</div>
       </div>
       <div class="a11y-detail">
-        <div class="a11y-label">Global taxonomy health score</div>
-        <div class="a11y-sub">81 / 100 · 9 rule violations · Scanned Mar 3</div>
+        <div class="a11y-label">WCAG 2.2 AA compliance</div>
+        <div class="a11y-sub">73 / 100 · 18 violations · Audited Feb 27</div>
       </div>
     </div>
 
-    <div class="panel-label" style="margin-bottom: 0.85rem;"><span class="icon">▪</span> Top data quality issues</div>
+    <div class="panel-label" style="margin-bottom: 0.85rem;"><span class="icon">▪</span> Top design debt items</div>
     <div class="debt-list">
       <div class="debt-item">
         <div class="debt-sev high"></div>
-        <div>EMEA Paid Social campaigns missing required utm_content</div>
-        <div class="debt-area">taxonomy · emea</div>
+        <div>Taxonomy Manager tree view missing keyboard navigation &amp; ARIA labels</div>
+        <div class="debt-area">a11y · taxonomy-manager</div>
       </div>
       <div class="debt-item">
         <div class="debt-sev high"></div>
-        <div>APAC auto-tagging overwriting manual UTM parameters</div>
-        <div class="debt-area">tracking · apac</div>
+        <div>Validation status indicators rely on colour only (no icons or text)</div>
+        <div class="debt-area">a11y · link-builder</div>
       </div>
       <div class="debt-item">
         <div class="debt-sev med"></div>
-        <div>Agency partner bypassing browser extension validation</div>
-        <div class="debt-area">onboarding · agency</div>
+        <div>3 dashboard chart widgets bypassing shared charting component</div>
+        <div class="debt-area">consistency · data-connect</div>
       </div>
       <div class="debt-item">
         <div class="debt-sev med"></div>
-        <div>12 Salesforce campaigns with orphaned tracking IDs</div>
-        <div class="debt-area">crm · integration</div>
+        <div>Data Connect onboarding flow has no progress state feedback</div>
+        <div class="debt-area">ux · onboarding</div>
       </div>
       <div class="debt-item">
         <div class="debt-sev low"></div>
-        <div>Deprecated utm_term values still active in 8 campaigns</div>
-        <div class="debt-area">cleanup · global</div>
+        <div>Cost Importer settings page uses legacy typography tokens</div>
+        <div class="debt-area">migration · cost-importer</div>
       </div>
     </div>
   </div>
@@ -956,73 +956,73 @@ body::before {
   <!-- ── RESEARCH PULSE (right sidebar) ── -->
   <div class="panel research-pulse">
     <div class="panel-header">
-      <div class="panel-label"><span class="icon">◎</span> Insight Pulse</div>
+      <div class="panel-label"><span class="icon">◎</span> Research Pulse</div>
     </div>
 
     <div class="insight-card">
-      <div class="insight-date">Mar 3 · Stakeholder interview · CMO office · VP Marketing Ops</div>
-      <div class="insight-quote">"Every board meeting I'm asked <em>why our CAC numbers don't match between platforms</em>. The answer is always the same — bad UTMs. We need this fixed before Q2 planning."</div>
+      <div class="insight-date">Mar 2 · User interview · Link Builder · P11</div>
+      <div class="insight-quote">"I just want to know — <em>did my URL pass or fail?</em> That's all I need right away. The current status just shows a spinner and then I have to scroll down to find the errors."</div>
       <div class="insight-tags">
-        <span class="insight-tag home-app">attribution</span>
-        <span class="insight-tag">exec-visibility</span>
-        <span class="insight-tag">cac</span>
+        <span class="insight-tag home-app">link-builder</span>
+        <span class="insight-tag">validation-ux</span>
+        <span class="insight-tag">status</span>
       </div>
-      <div class="insight-sentiment"><span class="sentiment-dot negative"></span> Executive frustration</div>
+      <div class="insight-sentiment"><span class="sentiment-dot confused"></span> Confused at validation step</div>
     </div>
 
     <div class="insight-card">
-      <div class="insight-date">Feb 27 · User interview · Campaign Manager · EMEA team</div>
-      <div class="insight-quote">"I love the browser extension but <em>when I'm in Meta Business Manager, the taxonomy dropdown doesn't load</em> — so I just type it manually and hope it's right. Half the time it's not."</div>
+      <div class="insight-date">Feb 26 · User interview · Taxonomy Manager · P07</div>
+      <div class="insight-quote">"The taxonomy search should be <em>right at the top</em> — not behind a filter panel. When I need to find a campaign naming rule, I want to search immediately, not click three things first."</div>
       <div class="insight-tags">
-        <span class="insight-tag home-app">browser-ext</span>
-        <span class="insight-tag">meta-ads</span>
-        <span class="insight-tag">ux</span>
+        <span class="insight-tag home-app">taxonomy-manager</span>
+        <span class="insight-tag">search</span>
+        <span class="insight-tag">ia</span>
       </div>
-      <div class="insight-sentiment"><span class="sentiment-dot confused"></span> Workaround · extension gap</div>
+      <div class="insight-sentiment"><span class="sentiment-dot negative"></span> Pain point · navigation depth</div>
     </div>
 
     <div class="insight-card">
-      <div class="insight-date">Feb 22 · Data review · Snowflake pipeline · Analytics team</div>
-      <div class="insight-quote">18% of all Q1 campaign spend ($2.4M) flows through tracking URLs that <em>fail Accutics validation rules</em>. The top 3 offending rules: missing market segment, non-standard channel labels, and free-text campaign names.</div>
+      <div class="insight-date">Feb 19 · Usability test · Data Connect setup · 5 participants</div>
+      <div class="insight-quote">All 5 participants clicked "Test Connection" expecting a live status indicator. 4 of 5 described the current static success message as <em>"too vague"</em>. Real-time connection health monitoring strongly preferred.</div>
       <div class="insight-tags">
-        <span class="insight-tag operator-portal">data-pipeline</span>
-        <span class="insight-tag">spend-at-risk</span>
-        <span class="insight-tag">validation</span>
-      </div>
-      <div class="insight-sentiment"><span class="sentiment-dot negative"></span> Significant spend untracked</div>
-    </div>
-
-    <div class="insight-card">
-      <div class="insight-date">Feb 18 · Agency onboarding session · Wavemaker · 4 participants</div>
-      <div class="insight-quote">"We have our own naming conventions for every client. <em>Switching to your taxonomy mid-flight is a big ask</em> — can we get a mapping table instead of rewriting everything?"</div>
-      <div class="insight-tags">
-        <span class="insight-tag operator-portal">agency</span>
-        <span class="insight-tag">taxonomy</span>
+        <span class="insight-tag home-app">data-connect</span>
         <span class="insight-tag">onboarding</span>
+        <span class="insight-tag">ux-test</span>
       </div>
-      <div class="insight-sentiment"><span class="sentiment-dot confused"></span> Adoption friction · agencies</div>
+      <div class="insight-sentiment"><span class="sentiment-dot negative"></span> Unanimous frustration</div>
     </div>
 
     <div class="insight-card">
-      <div class="insight-date">Feb 14 · Accutics × Analytics weekly sync</div>
-      <div class="insight-quote">GA4 migration surfaced that 34% of historical campaign data uses deprecated utm_term values. Team agreed to implement <em>automated deprecation warnings</em> inside the extension. Targeting rollout by end of March.</div>
+      <div class="insight-date">Feb 24 · Customer interview · Cost Importer · Enterprise ops team</div>
+      <div class="insight-quote">"When an import fails, I need to see <em>which rows broke and why</em> in the same view — right now I have to download an error log and cross-reference it with my CSV manually."</div>
       <div class="insight-tags">
-        <span class="insight-tag operator-portal">ga4-migration</span>
-        <span class="insight-tag">deprecation</span>
-        <span class="insight-tag">roadmap</span>
+        <span class="insight-tag operator-portal">cost-importer</span>
+        <span class="insight-tag">error-handling</span>
+        <span class="insight-tag">enterprise</span>
       </div>
-      <div class="insight-sentiment"><span class="sentiment-dot positive"></span> Aligned on fix · Q1 target</div>
+      <div class="insight-sentiment"><span class="sentiment-dot confused"></span> Extra steps under pressure</div>
     </div>
 
     <div class="insight-card">
-      <div class="insight-date">Feb · Synthesis · Cross-region taxonomy audit</div>
-      <div class="insight-quote">Regions are <em>defining market segments inconsistently</em> — EMEA uses 3-letter codes, APAC uses full names, Americas uses a mix. This creates 47 duplicate segments in Snowflake that map to only 12 actual markets. Standardization effort estimated at 2 sprints.</div>
+      <div class="insight-date">Feb 12 · Accutics × Product weekly sync</div>
+      <div class="insight-quote">Proposed inline validation preview (showing pass/fail <em>as you type</em> the campaign name) received strong buy-in. Lead designer: <em>"That would cut the build-check-fix loop from 5 minutes to 30 seconds."</em> Live preview considered a Q2 priority.</div>
       <div class="insight-tags">
-        <span class="insight-tag operator-portal">taxonomy</span>
-        <span class="insight-tag">cross-region</span>
-        <span class="insight-tag">standardization</span>
+        <span class="insight-tag operator-portal">link-builder</span>
+        <span class="insight-tag">inline-validation</span>
+        <span class="insight-tag">stakeholder-buy-in</span>
       </div>
-      <div class="insight-sentiment"><span class="sentiment-dot negative"></span> Critical finding · fragmentation</div>
+      <div class="insight-sentiment"><span class="sentiment-dot positive"></span> Enthusiastic reception</div>
+    </div>
+
+    <div class="insight-card">
+      <div class="insight-date">Jan · Synthesis · Browser extension adoption flow</div>
+      <div class="insight-quote">New users are <em>skipping the extension install step</em> during onboarding — the current prompt appears as a dismissible banner that 68% close without acting. Any friction here means campaigns go unvalidated at source, undermining the entire tracking pipeline from day one.</div>
+      <div class="insight-tags">
+        <span class="insight-tag operator-portal">browser-ext</span>
+        <span class="insight-tag">onboarding</span>
+        <span class="insight-tag">adoption-risk</span>
+      </div>
+      <div class="insight-sentiment"><span class="sentiment-dot negative"></span> Critical finding · drop-off at install</div>
     </div>
 
   </div><!-- /.research-pulse -->
