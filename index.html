@@ -753,13 +753,13 @@ body::before {
           <div class="threat-severity warning">warning</div>
         </div>
         <div>
-          <div class="threat-title">Link Builder bulk import timing out on files above 500 rows</div>
-          <div class="threat-desc">CSV imports above 500 rows hit the 30s gateway timeout, forcing manual file splitting. 23% of enterprise accounts regularly import 1k+ rows. Validation scales O(n²) due to duplicate-check logic.</div>
+          <div class="threat-title">Link Builder bulk import gives no progress feedback — users can't tell if it's working</div>
+          <div class="threat-desc">PostHog shows 44% of bulk import sessions end with the user closing the tab or refreshing during processing. No progress bar, row count, or status indicator is shown. Users retry the same file an average of 2.3 times, duplicating records.</div>
         </div>
         <div class="threat-sources">
-          <span class="threat-source">datadog · link-builder</span>
-          <span class="threat-source">jira · ACC-2847</span>
-          <span class="threat-source">dovetail · enterprise-feedback</span>
+          <span class="threat-source">posthog · link-builder-import</span>
+          <span class="threat-source">fullstory · session-replays</span>
+          <span class="threat-source">dovetail · P07, P12</span>
         </div>
       </div>
 
