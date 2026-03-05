@@ -256,6 +256,7 @@ body::before {
   color: var(--text-muted);
   line-height: 1.55;
   font-weight: 400;
+  max-width: 960px;
 }
 
 .threat-sources {
@@ -754,7 +755,7 @@ body::before {
         <div class="threat-bar critical"></div>
         <div>
           <div class="threat-title">Browser extension taxonomy dropdown failing on Meta Business Manager</div>
-          <div class="threat-desc">The extension's taxonomy picker is not rendering inside Meta Business Manager following their Feb 28 DOM update. Users are falling back to manual free-text entry — bypassing validation entirely. Sentry shows 2,400+ errors/day from the content-script injection. Correlates with interview P06's feedback: "I just type it myself now because the dropdown never loads." Extension crash rate on Meta is 34% vs. 2% on other platforms.</div>
+          <div class="threat-desc">The extension's taxonomy picker stopped rendering in Meta Business Manager after their Feb 28 DOM update. Users are bypassing validation via free-text entry. Sentry shows 2,400+ errors/day; crash rate on Meta is 34% vs. 2% on other platforms.</div>
           <div class="threat-sources">
             <span class="threat-source">sentry · browser-ext</span>
             <span class="threat-source">dovetail · P06, P12</span>
@@ -771,7 +772,7 @@ body::before {
         <div class="threat-bar warning"></div>
         <div>
           <div class="threat-title">Link Builder bulk import timing out on files above 500 rows</div>
-          <div class="threat-desc">CSV imports with more than 500 rows are hitting the 30s gateway timeout — forcing users to split files manually. 23% of enterprise accounts regularly import 1k+ rows. Datadog traces show the validation-per-row loop scales O(n²) due to duplicate-check logic. Users are requesting a progress bar: "It just spins and I don't know if it's working or frozen."</div>
+          <div class="threat-desc">CSV imports above 500 rows hit the 30s gateway timeout, forcing manual file splitting. 23% of enterprise accounts regularly import 1k+ rows. Validation scales O(n²) due to duplicate-check logic.</div>
           <div class="threat-sources">
             <span class="threat-source">datadog · link-builder</span>
             <span class="threat-source">jira · ACC-2847</span>
@@ -788,7 +789,7 @@ body::before {
         <div class="threat-bar info"></div>
         <div>
           <div class="threat-title">Data Connect onboarding completion rate declining for new accounts</div>
-          <div class="threat-desc">Only 38% of new accounts complete the Data Connect setup within their first 14 days — down from 61% in January. Drop-off clusters at the warehouse credential step. Users with Snowflake complete at 52%, BigQuery at 29%. Interviews with P03 and P08 confirm: "I needed my IT team to give me credentials and by then I'd moved on." Activation emails have a 12% open rate after day 3.</div>
+          <div class="threat-desc">Only 38% of new accounts complete Data Connect setup within 14 days — down from 61% in January. Drop-off clusters at the warehouse credential step: Snowflake completes at 52%, BigQuery at 29%.</div>
           <div class="threat-sources">
             <span class="threat-source">amplitude · onboarding-funnel</span>
             <span class="threat-source">dovetail · P03, P08</span>
